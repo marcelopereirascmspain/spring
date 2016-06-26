@@ -2,6 +2,7 @@ package io.demo
 
 import org.springframework.boot.*
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.ModelAndView
 import org.springframework.ui.*
 import java.util.concurrent.atomic.AtomicLong
 
@@ -11,11 +12,11 @@ class GreetingController {
 
   @RequestMapping("/greeting")
   fun greeting(
-      @RequestParam(value = "name", defaultValue = "World") name: String,
-      model: Model): String {
+    @RequestParam(value = "name", defaultValue = "World") name: String,
+    model: MutableMap<String, Any>): ModelAndView {
 
-    model.addAttribute("name", "john")
+    model.put("name", name)
 
-    return "listing_template"
+    return ModelAndView("hello", model)
   }
 }
