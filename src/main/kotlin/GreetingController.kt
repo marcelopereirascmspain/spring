@@ -12,11 +12,10 @@ class GreetingController {
 
   @RequestMapping("/greeting")
   fun greeting(
-    @RequestParam(value = "name", defaultValue = "World") name: String,
-    model: MutableMap<String, Any>): ModelAndView {
+    @RequestParam(
+      value = "name",
+      defaultValue = "World") name: String): ModelAndView {
 
-    model.put("name", name)
-
-    return ModelAndView("hello", model)
+    return ModelAndView("hello", mapOf("name" to name))
   }
 }
